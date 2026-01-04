@@ -1,0 +1,15 @@
+{
+  "name": "cbzehner",
+  "owner": {
+    "name": "cbzehner",
+    "email": "chris@cbzehner.com"
+  },
+  "plugins": [
+    {
+      "name": "magi",
+      "source": ".",
+      "description": "Query multiple AI advisors (Gemini, Codex, Claude) in parallel and synthesize their responses",
+      "version": "1.0.0"
+    }
+  ]
+}
