@@ -39,7 +39,7 @@ Verify installation:
 
 ```bash
 # Add the marketplace
-/plugin marketplace add cbzehner/magi
+/plugin marketplace add cbzehner/claude-skill-magi
 
 # Install the skill
 /plugin install magi@cbzehner
@@ -51,7 +51,7 @@ Clone into your `.claude/skills/` directory:
 
 ```bash
 cd ~/.claude/skills/
-git clone https://github.com/cbzehner/magi.git
+git clone https://github.com/cbzehner/claude-skill-magi.git magi
 ```
 
 ## Usage

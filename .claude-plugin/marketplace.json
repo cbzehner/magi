@@ -1,5 +1,6 @@
 {
-  "name": "cbzehner",
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "magi",
   "owner": {
     "name": "cbzehner",
     "email": "chris@cbzehner.com"
@@ -7,9 +8,15 @@
   "plugins": [
     {
       "name": "magi",
-      "source": ".",
+      "source": "./",
       "description": "Query multiple AI advisors (Gemini, Codex, Claude) in parallel and synthesize their responses",
-      "version": "1.0.0"
+      "version": "1.0.0",
+      "author": {
+        "name": "cbzehner",
+        "email": "chris@cbzehner.com"
+      },
+      "category": "productivity",
+      "homepage": "https://github.com/cbzehner/claude-skill-magi"
     }
   ]
 }
