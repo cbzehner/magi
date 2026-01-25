@@ -39,7 +39,12 @@ Parse `$ARGUMENTS` to determine mode. **Do not announce routing decisions**—ju
 
 ### Gemini
 ```
-Bash: gemini "[prompt]" --sandbox -o text
+Bash: gemini "[prompt]" --model gemini-3-pro-preview --sandbox -o text
+```
+
+If quota exhausted (429 error), fallback to:
+```
+Bash: gemini "[prompt]" --model gemini-3-flash-preview --sandbox -o text
 ```
 
 ### Codex
@@ -73,7 +78,7 @@ Task:
 
     **Instructions**:
     1. Run these two Bash commands in parallel:
-       - gemini "[prompt]" --sandbox -o text
+       - gemini "[prompt]" --model gemini-3-pro-preview --sandbox -o text
        - codex exec --sandbox read-only --skip-git-repo-check -- "[prompt]"
     2. Also consider the question yourself as the Claude advisor (senior software architect perspective)
     3. Wait for ALL results before proceeding
@@ -107,6 +112,7 @@ Gemini and Codex (external CLIs) may fail.
 
 - If command fails with network error, retry once
 - If auth error (mentions "login" or "credentials"), suggest: `gemini --login` or `codex login`
+- If Gemini quota exhausted (429, "quota", "capacity"), retry with `--model gemini-3-flash-preview`
 - If CLI not found, explain how to install (see [reference.md](reference.md))
 - Don't retry auth failures
 

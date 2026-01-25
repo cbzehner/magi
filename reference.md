@@ -6,11 +6,11 @@ Advisor capabilities and CLI details. Loaded on demand.
 
 ## Advisor Capabilities
 
-| Advisor | Strengths | Best For |
-|---------|-----------|----------|
-| Gemini | Web search (`google_web_search`), 1M token context | Current info, API docs, library research |
-| Codex | Fast (Rust-based), fine-grained sandboxing | Quick analysis, CI/CD patterns, security |
-| Claude | Deep reasoning (Opus model), code expertise | Architecture, code review, complex problems |
+| Advisor | Model | Strengths | Best For |
+|---------|-------|-----------|----------|
+| Gemini | gemini-3-pro-preview | Web search, 1M token context, advanced reasoning | Current info, API docs, library research |
+| Codex | gpt-5.2-codex (high reasoning) | Fast (Rust-based), fine-grained sandboxing | Quick analysis, CI/CD patterns, security |
+| Claude | Opus 4.5 | Deep reasoning, code expertise | Architecture, code review, complex problems |
 
 ---
 
@@ -19,16 +19,16 @@ Advisor capabilities and CLI details. Loaded on demand.
 ### Gemini
 
 ```bash
-gemini "[prompt]" --sandbox -o text
+gemini "[prompt]" --model gemini-3-pro-preview --sandbox -o text
 ```
 
 | Flag | Purpose |
 |------|---------|
+| `--model` | `gemini-3-pro-preview` (max reasoning), `gemini-3-flash-preview` (fallback) |
 | `--sandbox` | Read-only mode, no file writes |
 | `-o` | Output format: `text`, `json`, `stream-json` |
-| `-m` | Model: `flash`, `pro`, `flash-lite` |
 
-**Rate limits (free tier)**: 60/min, 1000/day
+**Quota**: Pro has daily limits. If exhausted (429 error), use flash as fallback.
 
 **Install**: `npm install -g @google/gemini-cli && gemini --login`
 
@@ -43,7 +43,9 @@ codex exec --sandbox read-only --skip-git-repo-check -- "[prompt]"
 | `exec` | Non-interactive mode |
 | `--sandbox` | `read-only`, `workspace-write`, `danger-full-access` |
 | `--skip-git-repo-check` | Run outside git repositories |
-| `--model` | Model override |
+| `--model` | Model override (default: gpt-5.2-codex) |
+
+**Config**: `model_reasoning_effort = "high"` set in `~/.codex/config.toml`
 
 **Install**: `npm install -g @openai/codex && codex login`
 
